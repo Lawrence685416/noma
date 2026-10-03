@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>NOMA — Design Board</title>
+<style>
+:root{--bg:#FAF8F5;--surface:#fff;--ink:#1A1A1A;--ink2:#6B6760;--line:#E6E2DB;--accent:#B8A58C;--sand:#EFEAE2;--ok:#3F6B4F;--err:#A8412F;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+body{background:#D9D5CE;color:var(--ink);font:14px/1.5 Inter,"Helvetica Neue",Arial,sans-serif}
+.board{padding:40px;display:flex;flex-direction:column;gap:56px;max-width:1240px;margin:auto}
+h1.t{font-size:28px;font-weight:600;letter-spacing:.2em}
+.lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#555;margin-bottom:12px}
+.scroll{overflow-x:auto}
+.frame{background:var(--bg);width:1160px;border:1px solid #bbb;box-shadow:0 8px 30px rgba(0,0,0,.12)}
+.row{display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap}
+.phone{width:320px;background:var(--bg);border:1px solid #bbb;box-shadow:0 8px 30px rgba(0,0,0,.12);overflow:hidden}
+.tab{width:620px;background:var(--bg);border:1px solid #bbb;box-shadow:0 8px 30px rgba(0,0,0,.12)}
+.ds{background:var(--bg);padding:36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;width:1160px}
+.ds h3{font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;color:var(--ink2)}
+.sw{display:flex;gap:8px;flex-wrap:wrap}.sw div{width:78px;font-size:10px;color:var(--ink2)}.sw i{display:block;height:38px;border:1px solid var(--line);margin-bottom:4px}
+.ann{background:var(--ink);color:#fff;text-align:center;font-size:11px;letter-spacing:.08em;padding:8px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;border-bottom:1px solid var(--line);background:var(--bg)}
+.nav .logo{font-weight:600;letter-spacing:.3em;font-size:20px}
+.nav ul{display:flex;gap:30px;list-style:none;padding:0;font-size:13px}
+.nav .ic{display:flex;gap:18px;font-size:13px}
+.bag{background:var(--ink);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-block;text-align:center;font-size:10px;line-height:18px}
+.sm .nav{padding:14px 16px}
+.btn{display:inline-block;padding:14px 26px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.o{background:transparent;color:var(--ink)}.btn.w{display:block;text-align:center;width:100%}
+.btn.s{padding:10px 18px}
+.ph{background:linear-gradient(160deg,var(--a),var(--b));background-size:cover;background-position:center;position:relative;aspect-ratio:4/5;display:flex;align-items:flex-end;padding:8px;font-size:10px;color:rgba(0,0,0,.35);letter-spacing:.1em}
+.sec{padding:64px 40px}.sm .sec{padding:36px 16px}
+.sec h2{font-size:26px;font-weight:500;letter-spacing:-.01em}
+.sh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:28px}
+.sh a{font-size:12px;border-bottom:1px solid var(--ink)}
+.hero{display:grid;grid-template-columns:1fr 1.1fr;min-height:520px;background:var(--sand)}
+.hero .tx{padding:80px 40px 40px 56px;display:flex;flex-direction:column;justify-content:center;gap:20px}
+.hero h1{font-size:60px;line-height:1.02;font-weight:500;letter-spacing:-.03em}
+.hero p{color:var(--ink2);max-width:360px}
+.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)}
+.grid{display:grid;gap:24px 20px}.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.card .ph{margin-bottom:12px}.card .n{font-size:14px;font-weight:500}.card .c{font-size:12px;color:var(--ink2)}.card .p{font-size:14px;margin-top:2px}
+.heart{position:absolute;top:10px;right:10px;width:30px;height:30px;background:rgba(255,255,255,.85);border-radius:50%;text-align:center;line-height:30px;font-size:14px;color:var(--ink)}
+.badge{position:absolute;top:10px;left:10px;background:var(--surface);font-size:10px;letter-spacing:.1em;padding:3px 8px;text-transform:uppercase;color:var(--ink)}
+.quick{position:absolute;left:8px;right:8px;bottom:8px;background:var(--ink);color:#fff;text-align:center;font-size:11px;letter-spacing:.1em;padding:10px;text-transform:uppercase}
+.cat{aspect-ratio:3/4}.cat b{font-size:15px;font-weight:500;color:#fff;letter-spacing:.04em}
+.edit{display:grid;grid-template-columns:1fr 1fr;background:var(--ink);color:#fff}
+.edit .tx{padding:64px 56px;display:flex;flex-direction:column;gap:18px;justify-content:center}
+.edit h2{font-size:34px}.edit .btn{background:#fff;color:var(--ink);border-color:#fff;align-self:flex-start}
+.news{background:var(--sand);text-align:center;padding:64px 40px}
+.field{display:flex;max-width:440px;margin:20px auto 0}.field span{flex:1;background:#fff;border:1px solid var(--line);padding:13px 14px;color:var(--ink2);text-align:left;font-size:13px}
+.foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;padding:56px 40px 28px;border-top:1px solid var(--line);font-size:13px;color:var(--ink2)}
+.foot b{display:block;color:var(--ink);margin-bottom:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase}.foot div div{margin-bottom:6px}
+.copy{padding:0 40px 24px;font-size:11px;color:var(--ink2);display:flex;justify-content:space-between}
+.crumb{font-size:12px;color:var(--ink2);padding:20px 40px 0}
+.pagehead{padding:20px 40px 24px;border-bottom:1px solid var(--line)}.pagehead h1{font-size:40px;font-weight:500;letter-spacing:-.02em}.pagehead p{color:var(--ink2);max-width:480px;margin-top:6px}
+.bar{display:flex;gap:12px;align-items:center;padding:18px 40px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.search{border:1px solid var(--line);background:#fff;padding:10px 14px;width:250px;color:var(--ink2);font-size:13px}
+.chip{border:1px solid var(--line);padding:8px 14px;font-size:12px;background:#fff}.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sel{border:1px solid var(--line);padding:9px 14px;font-size:12px;background:#fff}
+.shopbody{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:28px 40px 56px}
+.side h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px}.side div.o{padding:5px 0;font-size:13px;display:flex;gap:8px}
+.cb{width:14px;height:14px;border:1px solid var(--ink);display:inline-block;margin-top:3px}.cb.on{background:var(--ink)}
+.rng{height:2px;background:var(--line);position:relative;margin:16px 0 8px}.rng i{position:absolute;left:10%;right:30%;top:0;height:2px;background:var(--ink)}
+.empty{border:1px dashed var(--line);padding:56px 24px;text-align:center;color:var(--ink2);background:#fff}.empty b{display:block;color:var(--ink);font-size:16px;margin-bottom:6px}
+.pdp{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;padding:28px 40px 56px}
+.gal{display:grid;grid-template-columns:72px 1fr;gap:12px}.th{display:flex;flex-direction:column;gap:10px}.th .ph{aspect-ratio:1;padding:0}.th .ph.on{outline:1px solid var(--ink);outline-offset:2px}
+.arr{position:absolute;top:50%;width:36px;height:36px;background:#fff;border-radius:50%;text-align:center;line-height:36px;color:var(--ink)}
+.info h1{font-size:34px;font-weight:500;letter-spacing:-.02em;margin:4px 0 8px}.info .price{font-size:20px}
+.lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:22px 0 10px;display:flex;justify-content:space-between}.lbl u{text-transform:none;letter-spacing:0;color:var(--ink2)}
+.dots{display:flex;gap:10px}.dot{width:26px;height:26px;border-radius:50%;border:1px solid var(--line)}.dot.on{outline:1px solid var(--ink);outline-offset:3px}
+.sizes{display:flex;gap:8px;flex-wrap:wrap}.sz{min-width:48px;height:44px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;background:#fff;font-size:13px}.sz.on{background:var(--ink);color:#fff;border-color:var(--ink)}.sz.x{color:#bbb;text-decoration:line-through}
+.qty{display:inline-flex;border:1px solid var(--line);background:#fff}.qty span{width:40px;height:40px;display:flex;align-items:center;justify-content:center}
+.acc div{border-top:1px solid var(--line);padding:14px 0;display:flex;justify-content:space-between;font-size:13px}.acc div:last-child{border-bottom:1px solid var(--line)}
+.ship{font-size:12px;color:var(--ink2);margin-top:18px;display:grid;gap:4px}
+.cartwrap{display:grid;grid-template-columns:1.7fr 1fr;gap:56px;padding:28px 40px 56px}
+.ci{display:grid;grid-template-columns:96px 1fr auto;gap:18px;padding:20px 0;border-bottom:1px solid var(--line)}.ci .ph{aspect-ratio:4/5;padding:0}.ci small{color:var(--ink2);font-size:12px;display:block}.ci .act{font-size:12px;color:var(--ink2);margin-top:10px;display:flex;gap:16px;text-decoration:underline}
+.sum{background:var(--sand);padding:28px;height:fit-content}.sum h3{font-size:16px;font-weight:500;margin-bottom:14px}.sum .r{display:flex;justify-content:space-between;padding:6px 0;font-size:13px}.sum .tot{border-top:1px solid var(--line);margin-top:10px;padding-top:14px;font-weight:600;font-size:16px}
+.ec{text-align:center;padding:70px 24px}.ec h2{font-size:24px;font-weight:500;margin:10px 0 6px}.ec p{color:var(--ink2);margin-bottom:22px}
+.toast{background:var(--ink);color:#fff;padding:12px 16px;font-size:13px;display:inline-flex;gap:10px;align-items:center}
+.menu{padding:24px 20px;display:grid;gap:18px;font-size:20px}.menu small{font-size:12px;color:var(--ink2)}
+.tab .nav{padding:16px 24px}.tab .sec,.tab .shopbody{padding-left:24px;padding-right:24px}
+.note{font-size:12px;color:#444;margin-top:8px;max-width:1160px}
+</style></head><body><div class="board">
+<div><h1 class="t">NOMA</h1><p class="note">High-fidelity design board · Design system → Home → Shop → Product → Cart → Cart empty → Tablet &amp; Mobile. Editorial fashion photography has been added throughout the product cards, hero, product gallery, and cart previews. Images load from Unsplash and require an internet connection.</p></div>
+<div><div class="lab">00 · Design system</div><div class="scroll"><div class="ds" id="ds"></div></div></div>
+<div><div class="lab">01 · Home — desktop 1160</div><div class="scroll"><div class="frame" id="home"></div></div></div>
+<div><div class="lab">02 · Shop — desktop (with filters)</div><div class="scroll"><div class="frame" id="shop"></div></div></div>
+<div><div class="lab">02b · Shop — empty search state</div><div class="scroll"><div class="frame" id="shopempty"></div></div></div>
+<div><div class="lab">03 · Product details — desktop</div><div class="scroll"><div class="frame" id="pdp"></div></div></div>
+<div><div class="lab">04 · Cart — desktop (filled)</div><div class="scroll"><div class="frame" id="cart"></div></div></div>
+<div><div class="lab">04b · Cart — empty state</div><div class="scroll"><div class="frame" id="cartempty"></div></div></div>
+<div><div class="lab">05 · Tablet (768) &amp; Mobile (375)</div><div class="row" id="resp"></div></div>
+</div>
+<script>
+const P=[["Essential Oversized Tee","Tops","18,500","#E9E3D8","#CFC5B3"],["Structured Linen Shirt","Shirts","32,000","#DCD6C8","#B9B09C"],["Relaxed Cargo Trousers","Bottoms","38,500","#C9C1AF","#9C927C"],["Everyday Knit","Knitwear","36,000","#E4DACB","#BFAE92"],["Minimal Leather Sneaker","Footwear","65,000","#EDEAE4","#C4BFB5"],["Classic Overshirt","Outerwear","48,000","#B8B3A2","#8A8571"],["Relaxed Denim","Bottoms","42,000","#C3C9CF","#8F9AA5"],["Signature Hoodie","Tops","39,500","#D6CFC4","#A89E8E"]];
+const photos=['https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85','https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85','https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85','https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=900&q=85','https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=900&q=85','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85','https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=900&q=85'];
+const ph=(i,x='',t='PHOTO')=>`<div class="ph" style="--a:${P[i%8][3]};--b:${P[i%8][4]};background-image:url('${photos[i%photos.length]}')">${x||t}</div>`;
+const card=(i,o={})=>{const p=P[i%8];return `<div class="card"><div class="ph" style="--a:${p[3]};--b:${p[4]};background-image:url('${photos[i%photos.length]}')">${o.badge?`<span class="badge">${o.badge}</span>`:''}<span class="heart">${o.fav?'♥':'♡'}</span>${o.quick?'<span class="quick">Add to bag</span>':''}</div><div class="n">${p[0]}</div><div class="c">${p[1]}</div><div class="p">₦${p[2]}</div></div>`};
+const cards=(a,o={})=>a.map((i,k)=>card(i,k===0?o.first||{}:o.rest||{})).join('');
+const nav=(act='',n=2)=>`<div class="ann">Free delivery in Lagos on orders over ₦60,000 · 14-day returns</div><div class="nav"><div class="logo">NOMA</div><ul><li>Shop</li><li>New Arrivals</li><li>Categories</li><li>About</li></ul><div class="ic"><span>Search</span><span>Account</span><span>Bag <span class="bag">${n}</span></span></div></div>`;
+const mnav=(n=2)=>`<div class="ann">Free delivery over ₦60,000</div><div class="nav"><span>☰</span><div class="logo" style="font-size:17px">NOMA</div><span>Bag <span class="bag">${n}</span></span></div>`;
+const foot=`<div class="foot"><div><b style="font-size:16px;letter-spacing:.3em">NOMA</b><div>Considered everyday clothing, designed in Lagos.</div><div>IG · X · TikTok · Pinterest</div></div><div><b>Shop</b><div>New Arrivals</div><div>Tops</div><div>Bottoms</div><div>Footwear</div></div><div><b>Help</b><div>Shipping</div><div>Returns</div><div>Size guide</div><div>Contact</div></div><div><b>Company</b><div>About</div><div>Journal</div><div>Stockists</div><div>Careers</div></div></div><div class="copy"><span>© 2026 NOMA Lagos</span><span>Privacy · Terms</span></div>`;
+const crumb=t=>`<div class="crumb">Home / ${t}</div>`;
+const cartItems=`<div class="ci">${ph(0,'')}<div><b>Essential Oversized Tee</b><small>Sand · Size M</small><div class="qty" style="margin-top:12px"><span>−</span><span>1</span><span>+</span></div><div class="act"><span>Move to wishlist</span><span>Remove</span></div></div><b>₦18,500</b></div><div class="ci">${ph(5,'')}<div><b>Classic Overshirt</b><small>Olive · Size L</small><div class="qty" style="margin-top:12px"><span>−</span><span>1</span><span>+</span></div><div class="act"><span>Move to wishlist</span><span>Remove</span></div></div><b>₦48,000</b></div>`;
+const sum=`<div class="sum"><h3>Order summary</h3><div class="r"><span>Subtotal</span><span>₦66,500</span></div><div class="r"><span>Shipping</span><span>Free</span></div><div class="r" style="color:var(--ink2)"><span>Promo</span><span>—</span></div><div class="field" style="margin:10px 0 14px"><span>Promo code</span><span style="flex:0 0 70px;background:transparent;text-align:center;color:var(--ink)">Apply</span></div><div class="r tot"><span>Estimated total</span><span>₦66,500</span></div><div style="margin-top:18px" class="btn w">Checkout</div><div style="text-align:center;font-size:12px;margin-top:12px;text-decoration:underline">Continue shopping</div></div>`;
+const ec=`<div class="ec"><div style="font-size:28px">◻</div><h2>Your bag is empty</h2><p>Nothing here yet. Start with this season's essentials.</p><span class="btn">Continue shopping</span></div>`;
+
+document.getElementById('ds').innerHTML=`
+<div><h3>Colour</h3><div class="sw">${[['#FAF8F5','Background'],['#FFFFFF','Surface'],['#1A1A1A','Text / Primary'],['#6B6760','Secondary'],['#E6E2DB','Border'],['#EFEAE2','Sand panel'],['#B8A58C','Accent'],['#3F6B4F','Success'],['#A8412F','Error']].map(c=>`<div><i style="background:${c[0]}"></i>${c[1]}<br>${c[0]}</div>`).join('')}</div></div>
+<div><h3>Typography — Inter</h3><div style="font-size:52px;font-weight:500;letter-spacing:-.03em;line-height:1.05">Display 52/56</div><div style="font-size:34px;font-weight:500">H1 34 · 500</div><div style="font-size:26px;font-weight:500">H2 26 · 500</div><div style="font-size:16px;margin-top:6px">Body L 16/26 · 400</div><div style="font-size:14px">Body 14/22 · 400</div><div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase">Label 11 · caps +14%</div></div>
+<div><h3>Spacing (4-pt)</h3>${[4,8,12,16,24,32,48,64,96].map(s=>`<div style="display:flex;align-items:center;gap:10px;font-size:11px;margin-bottom:3px"><span style="width:${s}px;height:8px;background:var(--accent)"></span>${s}</div>`).join('')}<div style="font-size:11px;color:var(--ink2);margin-top:6px">Radius 0 (inputs/buttons/cards) · 50% only for icon chips. Max width 1200, gutter 40/24/16.</div></div>
+<div><h3>Buttons &amp; controls</h3><div class="row" style="gap:10px"><span class="btn s">Primary</span><span class="btn s o">Secondary</span><span class="btn s" style="opacity:.35">Disabled</span></div><div class="row" style="gap:8px;margin:12px 0"><span class="chip on">Active</span><span class="chip">Filter</span><span class="sz on">M</span><span class="sz">L</span><span class="sz x">XL</span></div><div class="qty"><span>−</span><span>1</span><span>+</span></div><div class="search" style="margin-top:12px;width:100%">Search NOMA</div></div>
+<div><h3>Badges · Toast · Dropdown</h3><span class="chip" style="background:var(--sand)">New</span> <span class="chip" style="background:var(--sand)">Low stock</span> <span class="chip" style="color:var(--err);border-color:var(--err)">Sold out</span><div style="margin:14px 0"><span class="toast"><span style="color:#8fd1a5">✓</span> Added to bag · <u>View</u></span></div><div style="border:1px solid var(--line);background:#fff;width:200px;font-size:13px"><div style="padding:9px 12px;background:var(--sand)">Featured</div><div style="padding:9px 12px">Price: low to high</div><div style="padding:9px 12px">Newest</div></div></div>
+<div><h3>Interaction states</h3><div style="font-size:13px;color:var(--ink2);display:grid;gap:6px"><div>Hover: card shows “Add to bag”, image +2% scale</div><div>Focus: 2px #1A1A1A outline, 3px offset</div><div>Active: button #000, 1px press</div><div>Error: 1px #A8412F border + helper text</div><div>Touch targets ≥ 44×44</div><div>Breakpoints: 1024 · 768 · 480</div></div></div>`;
+
+document.getElementById('home').innerHTML=nav()+`<div class="hero"><div class="tx"><div class="eyebrow">Autumn / Winter 26</div><h1>Everyday,<br>Elevated.</h1><p>Considered essentials in honest fabrics, cut for the way you actually live. Designed in Lagos.</p><div style="display:flex;gap:12px"><span class="btn">Shop Collection</span><span class="btn o">Explore New Arrivals</span></div></div>${ph(1,'HERO · editorial portrait').replace('class="ph"','class="ph" style="--a:#D9D0BF;--b:#A89B84;aspect-ratio:auto"')}</div>
+<div class="sec"><div class="sh"><h2>Featured</h2><a>View all</a></div><div class="grid g4">${cards([0,1,2,3],{first:{badge:'New',quick:1},rest:{}})}</div></div>
+<div class="sec" style="padding-top:0"><div class="sh"><h2>Shop by category</h2></div><div class="grid g4">${['Tops','Bottoms','Outerwear','Footwear'].map((c,i)=>`<div class="ph cat" style="--a:${P[i*2][3]};--b:${P[i*2][4]}"><b>${c} →</b></div>`).join('')}</div></div>
+<div class="edit"><div class="tx"><div class="eyebrow" style="color:#bbb">The Journal</div><h2>Made slowly.<br>Worn constantly.</h2><p style="color:#bbb;max-width:360px">Linen from Portugal, cut and finished by small ateliers. Fewer pieces, built to last seasons.</p><span class="btn">Read the story</span></div>${ph(2,'EDITORIAL').replace('class="ph"','class="ph" style="--a:#8A8472;--b:#5E594C;aspect-ratio:auto;min-height:360px"')}</div>
+<div class="sec"><div class="sh"><h2>New arrivals</h2><a>View all</a></div><div class="grid g4">${cards([4,5,6,7],{first:{badge:'New'},rest:{badge:'New'}})}</div></div>
+<div class="news"><h2 style="font-size:26px;font-weight:500">Join the list</h2><p style="color:var(--ink2)">New drops and 10% off your first order.</p><div class="field"><span>Email address</span><span style="flex:0 0 120px;background:var(--ink);color:#fff;text-align:center;border-color:var(--ink)">SUBSCRIBE</span></div></div>`+foot;
+
+const shopGrid=`<div class="grid g3">${[0,1,2,3,4,5,6,7,0].map((i,k)=>card(i,{badge:k==3?'New':k==5?'Low stock':'',fav:k==1})).join('')}</div>`;
+document.getElementById('shop').innerHTML=nav()+crumb('Shop')+`<div class="pagehead"><h1>Shop</h1><p>Wardrobe staples in linen, cotton and leather. Filter by category, size or price.</p></div><div class="bar"><div class="search">Search products</div><span class="chip on">All</span><span class="chip">Tops</span><span class="chip">Bottoms</span><span class="chip">Outerwear</span><span class="chip">Footwear</span><span style="flex:1"></span><span style="color:var(--ink2);font-size:12px">9 products</span><span class="sel">Sort: Featured ▾</span></div><div class="shopbody"><div class="side"><h4>Price</h4><div class="rng"><i></i></div><div style="font-size:12px;display:flex;justify-content:space-between;margin-bottom:24px"><span>₦15,000</span><span>₦50,000</span></div><h4>Size</h4><div class="sizes" style="margin-bottom:24px">${['S','M','L','XL'].map((s,i)=>`<span class="sz ${i==1?'on':''}" style="min-width:40px;height:36px">${s}</span>`).join('')}</div><h4>Colour</h4><div class="o"><span class="cb on"></span>Sand</div><div class="o"><span class="cb"></span>Black</div><div class="o"><span class="cb"></span>Olive</div><div style="font-size:12px;text-decoration:underline;margin-top:14px">Clear all</div></div><div>${shopGrid}<div style="text-align:center;margin-top:40px;font-size:12px;color:var(--ink2)">Showing 9 of 24<div style="width:200px;height:2px;background:var(--line);margin:10px auto 18px"><div style="width:37%;height:2px;background:var(--ink)"></div></div><span class="btn o">Load more</span></div></div></div>`+foot;
+document.getElementById('shopempty').innerHTML=nav()+crumb('Shop')+`<div class="pagehead"><h1>Shop</h1></div><div class="bar"><div class="search" style="color:var(--ink)">“velvet blazer”</div><span class="chip on">Outerwear ✕</span><span style="flex:1"></span><span style="color:var(--ink2);font-size:12px">0 products</span></div><div style="padding:40px"><div class="empty"><b>No results for “velvet blazer”</b>Try a different search term or clear your filters.<div style="margin-top:18px"><span class="btn s">Clear filters</span></div></div></div>`;
+
+document.getElementById('pdp').innerHTML=nav()+crumb('Shop / Outerwear / Classic Overshirt')+`<div class="pdp"><div class="gal"><div class="th">${[5,5,1,3].map((i,k)=>`<div class="ph ${k==0?'on':''}" style="--a:${P[i][3]};--b:${P[i][4]}"></div>`).join('')}</div><div style="position:relative">${ph(5,'MAIN IMAGE · 1 / 4')}<span class="arr" style="left:12px">‹</span><span class="arr" style="right:12px">›</span></div></div>
+<div class="info"><div class="eyebrow">Outerwear</div><h1>Classic Overshirt</h1><div class="price">₦48,000</div><div style="font-size:12px;color:var(--ink2);margin:6px 0 14px">★★★★★ 4.8 · 126 reviews</div><p style="color:var(--ink2)">A heavyweight cotton twill overshirt with a relaxed shoulder and concealed placket. Wear it as a shirt or a light jacket.</p>
+<div class="lbl"><span>Colour — Olive</span></div><div class="dots"><span class="dot on" style="background:#6E6F52"></span><span class="dot" style="background:#C9BBA3"></span><span class="dot" style="background:#1A1A1A"></span></div>
+<div class="lbl"><span>Size</span><u>Size guide</u></div><div class="sizes"><span class="sz">S</span><span class="sz">M</span><span class="sz on">L</span><span class="sz">XL</span><span class="sz x">XXL</span></div>
+<div class="lbl"><span>Quantity</span></div><div style="display:flex;gap:12px;align-items:center"><div class="qty"><span>−</span><span>1</span><span>+</span></div><span style="font-size:12px;color:var(--ok)">In stock</span></div>
+<div style="display:grid;grid-template-columns:1fr 52px;gap:10px;margin-top:24px"><span class="btn w" style="padding:18px">Add to cart</span><span class="btn o" style="padding:0;display:flex;align-items:center;justify-content:center;font-size:18px">♡</span></div>
+<div class="ship"><span>◦ Delivery in Lagos 1–3 days · nationwide 3–6 days</span><span>◦ Free returns within 14 days</span></div>
+<div class="acc" style="margin-top:24px"><div><b>Product details</b><span>−</span></div><div style="display:block;color:var(--ink2)">100% organic cotton twill, 340gsm. Relaxed fit. Model is 1.82m wearing L.</div><div><b>Fabric &amp; care</b><span>+</span></div><div><b>Shipping &amp; returns</b><span>+</span></div></div></div></div>
+<div class="sec" style="padding-top:0"><div class="sh"><h2>You may also like</h2></div><div class="grid g4">${cards([1,3,6,7],{})}</div></div>`+foot;
+
+document.getElementById('cart').innerHTML=nav('',2)+crumb('Cart')+`<div class="pagehead" style="border:0"><h1>Your Cart</h1></div><div class="cartwrap" style="padding-top:0"><div>${cartItems}</div>${sum}</div>`+foot;
+document.getElementById('cartempty').innerHTML=nav('',0)+crumb('Cart')+ec+`<div class="sec" style="padding-top:0"><div class="sh"><h2>Popular right now</h2></div><div class="grid g4">${cards([0,3,4,7],{})}</div></div>`+foot;
+
+const mk=(h,b)=>`<div class="phone sm"><div class="lab" style="padding:6px 12px;margin:0;background:#eee">${h}</div>${b}</div>`;
+document.getElementById('resp').innerHTML=
+`<div class="tab"><div class="lab" style="padding:6px 12px;margin:0;background:#eee">Tablet · shop · 2-column grid, filters in drawer</div><div class="nav"><div class="logo">NOMA</div><div class="ic"><span>Search</span><span>Account</span><span>Bag <span class="bag">2</span></span></div></div><div class="pagehead" style="padding:16px 24px"><h1 style="font-size:32px">Shop</h1></div><div class="bar" style="padding:14px 24px"><div class="search" style="flex:1">Search</div><span class="sel">Filters</span><span class="sel">Sort ▾</span></div><div class="sec"><div class="grid g3" style="gap:20px 16px">${cards([0,1,2,3,4,5],{})}</div></div></div>`+
+mk('Mobile · home',mnav()+`<div style="background:var(--sand)">${ph(1,'HERO').replace('class="ph"','class="ph" style="--a:#D9D0BF;--b:#A89B84;aspect-ratio:1/1"')}<div style="padding:24px 16px 28px"><h1 style="font-size:40px;line-height:1.05;font-weight:500;letter-spacing:-.03em">Everyday,<br>Elevated.</h1><p style="color:var(--ink2);margin:10px 0 18px">Considered essentials in honest fabrics.</p><span class="btn w" style="padding:16px">Shop Collection</span><span class="btn o w" style="padding:16px;margin-top:10px">Explore New Arrivals</span></div></div><div class="sec"><div class="sh"><h2 style="font-size:20px">Featured</h2></div><div class="grid g2" style="gap:20px 12px">${cards([0,1,2,3],{})}</div></div>`)+
+mk('Mobile · menu open',`<div class="nav"><span>✕</span><div class="logo" style="font-size:17px">NOMA</div><span>Bag <span class="bag">2</span></span></div><div class="menu"><div class="search" style="font-size:14px;padding:14px">Search</div><span>Shop</span><span>New Arrivals</span><span>Categories</span><span>About</span><hr style="border:0;border-top:1px solid var(--line)"><small>Account · Wishlist · Help</small></div><div style="height:260px"></div>`)+
+mk('Mobile · product (stacked, sticky CTA)',mnav()+`<div style="position:relative">${ph(5,'1 / 4')}<span class="arr" style="left:8px">‹</span><span class="arr" style="right:8px">›</span></div><div style="display:flex;gap:8px;padding:10px 16px">${[5,1,3].map(i=>`<div class="ph" style="--a:${P[i][3]};--b:${P[i][4]};width:56px;aspect-ratio:1;padding:0"></div>`).join('')}</div><div class="info" style="padding:8px 16px 16px"><div class="eyebrow">Outerwear</div><h1 style="font-size:26px">Classic Overshirt</h1><div class="price">₦48,000</div><div class="lbl"><span>Colour</span></div><div class="dots"><span class="dot on" style="background:#6E6F52"></span><span class="dot" style="background:#C9BBA3"></span></div><div class="lbl"><span>Size</span><u>Size guide</u></div><div class="sizes">${['S','M','L','XL'].map((s,i)=>`<span class="sz ${i==2?'on':''}" style="min-width:56px;height:48px">${s}</span>`).join('')}</div></div><div style="position:sticky;bottom:0;padding:12px 16px;background:var(--bg);border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 48px;gap:8px"><span class="btn w" style="padding:16px">Add to cart · ₦48,000</span><span class="btn o" style="padding:0;text-align:center;line-height:48px">♡</span></div>`)+
+mk('Mobile · cart',mnav()+`<div style="padding:20px 16px 4px"><h1 style="font-size:28px;font-weight:500">Your Cart</h1></div><div style="padding:0 16px">${cartItems.replace(/96px/g,'80px')}</div><div style="padding:16px">${sum}</div>`);
+
+// Apply editorial photography to every photo placeholder across all board sections,
+// including thumbnails and responsive mockups created without the shared helper.
+document.querySelectorAll('.ph').forEach((el, index) => {
+  if (!el.style.backgroundImage || el.style.backgroundImage === 'none') {
+    const photo = photos[index % photos.length];
+    el.style.backgroundImage = `url('${photo}')`;
+  }
+  el.style.backgroundSize = 'cover';
+  el.style.backgroundPosition = 'center';
+});
+</script></body></html>
