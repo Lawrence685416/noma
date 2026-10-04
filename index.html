@@ -3,26 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
-    <link rel="stylesheet" href="/css/style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
     <title>NOMA</title>
   </head>
   <body>
     <div class="container">
-      <div class="nav">
+      <nav class="nav">
+        <i class="fa-solid fa-bars menu-icon" id="menu-toggle"></i>
+
         <h1>NOMA</h1>
-        <div class="nav-sect2">
+
+        <div class="nav-sect2" id="nav-links">
           <a href="#">Shop</a>
           <a href="#">New Arrivals</a>
           <a href="#">Categories</a>
           <a href="#">About</a>
         </div>
+
         <div class="nav-icons">
           <i class="fa-solid fa-magnifying-glass"></i>
           <i class="fa-solid fa-bag-shopping"></i>
-          <i class="fa-solid fa-user"></i>
+          <i class="fa-solid fa-user account-icon"></i>
         </div>
-      </div>
+      </nav>
     </div>
+
+    <script src="js/main.js"></script>
   </body>
 </html>
