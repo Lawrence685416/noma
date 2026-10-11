@@ -180,4 +180,7 @@ body {
   .button {
   flex-wrap: wrap;
 }
+.header-image img {
+  max-height: 420px;
+}
 }
