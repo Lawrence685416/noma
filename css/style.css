@@ -352,3 +352,15 @@ body {
     font-size: 19px;
   }
 }
+.product-image-container > a {
+  position: absolute;
+  /* top: -2px; */
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-size: 15px;
+}
