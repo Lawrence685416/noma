@@ -471,3 +471,67 @@ body {
     height: 350px;
   }
 }
+
+.waitlist {
+  background-color: #EFEAE2;
+  text-align: center;
+  padding: 70px 24px;
+  margin-top: 4rem;
+}
+
+.waitlist h2 {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.waitlist p {
+  color: #6B6760;
+  font-size: 14px;
+}
+
+.waitlist-form {
+  display: flex;
+  max-width: 440px;
+  margin: 25px auto 0;
+}
+
+.waitlist-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #E6E2DB;
+  outline: none;
+  font-size: 13px;
+}
+
+.waitlist-form button {
+  padding: 14px 25px;
+  background: #1A1A1A;
+  color: #fff;
+  border: none;
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+@media (max-width: 480px) {
+  .waitlist {
+    padding: 55px 18px;
+  }
+
+  .waitlist h2 {
+    font-size: 24px;
+  }
+
+  .waitlist-form {
+    width: 100%;
+  }
+
+  .waitlist-form input {
+    width: 60%;
+  }
+
+  .waitlist-form button {
+    padding: 14px 16px;
+  }
+}
