@@ -101,65 +101,77 @@ body {
 }
 
 /* Header Css goes here >>>>> */
+/* =========================
+   HERO SECTION
+========================= */
 
 .header {
   display: flex;
+  width: 100%;
   min-height: 80vh;
   align-items: center;
-  padding-left: 20px;
   background-color: #faf8f5;
 }
+
+/* HERO TEXT */
+
 .header-text {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  box-sizing: border-box;
 }
-.header-image {
-  width: 50%;
-}
-.header-image img {
-  width: 100%;
-  height: auto;
-  max-height: 540px;
-  object-fit: cover;
-  display: block;
-}
+
 .header-text h1 {
   font-family: "Sora", sans-serif;
-  font-size: 56px;
+  font-size: clamp(38px, 4.5vw, 64px);
   font-weight: 600;
   line-height: 1.15;
+  margin-bottom: 16px;
 }
+
 .header-text p {
   font-size: 16px;
   line-height: 1.8;
   color: #555;
   max-width: 450px;
 }
+
+/* HERO BUTTONS */
+
 .button {
   display: flex;
   gap: 16px;
   margin-top: 28px;
+  flex-wrap: wrap;
 }
+
+.button button {
+  padding: 14px 20px;
+  width: 200px;
+  height: 50px;
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
 .button button:first-child {
   background-color: #222;
   color: #fff;
   border: 1px solid #222;
 }
 
+.button button:first-child:hover {
+  background-color: #444;
+}
+
 .button button:last-child {
   background-color: transparent;
   color: #222;
   border: 1px solid #222;
-  font-size: 12px;
-}
-.button button {
-  padding: 14px 20px;
-  width: 200px;
-  height: 50px;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-.button button:first-child:hover {
-  background-color: #444;
 }
 
 .button button:last-child:hover {
@@ -167,21 +179,84 @@ body {
   color: #fff;
 }
 
+/* HERO IMAGE */
+
+.header-image {
+  width: 50%;
+  height: 440px;
+  overflow: hidden;
+}
+
+.header-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* =========================
+   TABLET RESPONSIVENESS
+========================= */
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
-    padding: 40px 20px;
-    gap: 32px;
+    min-height: auto;
+    padding: 40px 0;
   }
-  .header-text,
+
+  .header-text {
+    width: 100%;
+    padding: 40px 30px;
+  }
+
+  .header-text h1 {
+    font-size: 46px;
+  }
+
   .header-image {
     width: 100%;
+    height: 380px;
   }
+
   .button {
     flex-wrap: wrap;
   }
-  .header-image img {
-    max-height: 420px;
+}
+
+/* =========================
+   MOBILE RESPONSIVENESS
+========================= */
+
+@media (max-width: 480px) {
+  .header {
+    padding: 20px 0;
+  }
+
+  .header-text {
+    padding: 30px 20px;
+  }
+
+  .header-text h1 {
+    font-size: 38px;
+  }
+
+  .header-text p {
+    font-size: 14px;
+  }
+
+  .button {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .button button {
+    width: 100%;
+  }
+
+  .header-image {
+    height: 320px;
   }
 }
 .feature {
