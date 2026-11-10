@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <title>NOMA</title>
+  </head>
+  <link rel="stylesheet" href="./css/cart.css" />
+  <body>
+    <nav class="nav">
+      <i class="fa-solid fa-bars menu-icon" id="menu-toggle"></i>
+
+      <h1>NOMA</h1>
+
+      <div class="nav-sect2" id="nav-links">
+        <a href="#">Shop</a>
+        <a href="#">New Arrivals</a>
+        <a href="#">Categories</a>
+        <a href="#">About</a>
+      </div>
+
+      <div class="nav-icons">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <i class="fa-solid fa-bag-shopping"></i>
+        <i class="fa-solid fa-user account-icon"></i>
+      </div>
+    </nav>
+
+    <main class="cart-page">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="shop.html">Shop</a>
+        <span>/</span>
+        <span>Cart</span>
+      </div>
+
+      <div class="cart-heading">
+        <div>
+          <h2>Your Bag</h2>
+          <p>Review your selected pieces before checkout.</p>
+        </div>
+        <span>2 Items</span>
+      </div>
+
+      <section class="cart-container">
+        <!-- Cart Items -->
+        <div class="cart-items">
+          <div class="cart-item">
+            <img src="./images/product-1.avif" alt="Essential Oversized Tee" />
+
+            <div class="item-details">
+              <h3>Essential Oversized Tee</h3>
+              <p>Sand / Size M</p>
+              <strong>₦18,500</strong>
+
+              <div class="quantity">
+                <button type="button">−</button>
+                <span>1</span>
+                <button type="button">+</button>
+              </div>
+
+              <div class="item-actions">
+                <a href="#">Move to wishlist</a>
+                <a href="#">Remove</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="cart-item">
+            <img src="./images/product-5.avif" alt="Classic Overshirt" />
+
+            <div class="item-details">
+              <h3>Classic Overshirt</h3>
+              <p>Olive / Size L</p>
+              <strong>₦48,000</strong>
+
+              <div class="quantity">
+                <button type="button">−</button>
+                <span>1</span>
+                <button type="button">+</button>
+              </div>
+
+              <div class="item-actions">
+                <a href="#">Move to wishlist</a>
+                <a href="#">Remove</a>
+              </div>
+            </div>
+          </div>
+
+          <a href="shop.html" class="continue-shopping">
+            ← Continue shopping
+          </a>
+        </div>
+
+        <!-- Order Summary -->
+        <aside class="order-summary">
+          <h3>Order Summary</h3>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>₦66,500</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span>Calculated at checkout</span>
+          </div>
+
+          <div class="promo-code">
+            <input type="text" placeholder="Enter promo code" />
+            <button type="button">Apply</button>
+          </div>
+
+          <div class="summary-total">
+            <span>Estimated Total</span>
+            <strong>₦66,500</strong>
+          </div>
+
+          <button class="checkout-btn" type="button">
+            Proceed to Checkout
+          </button>
+
+          <p class="checkout-note">Secure checkout · Easy returns</p>
+        </aside>
+      </section>
+    </main>
+
+    <script src="./css/cart.css"></script>
+  </body>
+</html>
