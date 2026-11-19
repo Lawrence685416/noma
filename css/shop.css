@@ -20,7 +20,10 @@ body {
   padding: 15px 5%;
 }
 
-.nav > h1 {
+.nav > a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
   letter-spacing: 5px;
   font-size: 23px;
 }
@@ -42,8 +45,9 @@ body {
   align-items: center;
 }
 
-.nav-icons i {
+.nav-icons i, a {
   font-size: 18px;
+  color: #000;
   cursor: pointer;
 }
 
@@ -86,7 +90,7 @@ body {
     display: block;
   }
 
-  .nav > h1 {
+  .nav > a {
     font-size: 21px;
   }
 
@@ -472,4 +476,12 @@ body {
     flex-wrap: wrap;
     gap: 12px;
   }
+}
+
+
+.category-link.active {
+  color: #1a1a1a;
+  font-weight: 600;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 5px;
 }
