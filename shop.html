@@ -7,9 +7,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
-    <title>NOMA</title>
+    <title>NOMA | Shop</title>
+    <link rel="stylesheet" href="./css/shop.css" />
   </head>
-  <link rel="stylesheet" href="./css/shop.css" />
   <body>
     <nav class="nav">
       <i class="fa-solid fa-bars menu-icon" id="menu-toggle"></i>
@@ -26,7 +26,7 @@
       <div class="nav-icons">
         <i class="fa-solid fa-magnifying-glass"></i>
 
-        <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+        <a href="cart.html" aria-label="Your bag"><i class="fa-solid fa-bag-shopping"></i> <span class="cart-count">0</span></a>
         <i class="fa-solid fa-user account-icon"></i>
       </div>
     </nav>
@@ -71,12 +71,11 @@
 
       <div class="toolbar-right">
         <span>Showing 12 products</span>
-
-        <select>
-          <option>Sort by: Featured</option>
-          <option>Price: Low to High</option>
-          <option>Price: High to Low</option>
-          <option>Newest</option>
+        <select id="sort-products">
+          <option value="featured">Sort by: Featured</option>
+          <option value="low-high">Price: Low to High</option>
+          <option value="high-low">Price: High to Low</option>
+          <option value="newest">Newest</option>
         </select>
       </div>
     </section>
@@ -86,35 +85,37 @@
 
         <div class="filter-group">
           <h4>Category</h4>
-          <label><input type="checkbox" /> Clothing</label>
-          <label><input type="checkbox" /> Accessories</label>
-          <label><input type="checkbox" /> Essentials</label>
+          <label><input type="checkbox" data-category-filter="Clothing" /> Clothing</label>
+          <label><input type="checkbox" data-category-filter="Accessories" /> Accessories</label>
+          <label><input type="checkbox" data-category-filter="Essentials" /> Essentials</label>
         </div>
-
-
-<div class="filter-group">
-  <h4>Size</h4>
-
-  <label><input type="checkbox" data-size="S"> S</label>
-  <label><input type="checkbox" data-size="M"> M</label>
-  <label><input type="checkbox" data-size="L"> L</label>
-  <label><input type="checkbox" data-size="XL"> XL</label>
-</div>
-
 
         <div class="filter-group">
           <h4>Size</h4>
-          <label><input type="checkbox" /> S</label>
-          <label><input type="checkbox" /> M</label>
-          <label><input type="checkbox" /> L</label>
-          <label><input type="checkbox" /> XL</label>
+
+          <label><input type="checkbox" data-size="S" /> S</label>
+          <label><input type="checkbox" data-size="M" /> M</label>
+          <label><input type="checkbox" data-size="L" /> L</label>
+          <label><input type="checkbox" data-size="XL" /> XL</label>
         </div>
 
         <div class="filter-group">
           <h4>Colour</h4>
-          <label><input type="checkbox" /> Black</label>
-          <label><input type="checkbox" /> White</label>
-          <label><input type="checkbox" /> Beige</label>
+
+          <label>
+            <input type="checkbox" data-color="Black" />
+            Black
+          </label>
+
+          <label>
+            <input type="checkbox" data-color="White" />
+            White
+          </label>
+
+          <label>
+            <input type="checkbox" data-color="Beige" />
+            Beige
+          </label>
         </div>
       </aside>
 
@@ -170,7 +171,8 @@
       </div>
     </div>
 
-    <script src="/js/main.js"></script>
-    <script src="/js/product.js"></script>
+    <script src="./js/products.js"></script>
+    <script src="./js/shop.js"></script>
+    <script src="./js/main.js"></script>
   </body>
 </html>

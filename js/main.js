@@ -1,6 +1,15 @@
-const menuToggle = document.querySelector("#menu-toggle");
-const navLinks = document.querySelector("#nav-links");
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.querySelector("#menu-toggle");
+  const navLinks = document.querySelector("#nav-links");
 
-menuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("active");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+  }
+
+  if (typeof updateCartCount === "function") {
+    updateCartCount();
+  }
 });

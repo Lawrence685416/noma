@@ -1,190 +1,76 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
-    <title>NOMA</title>
-  </head>
-  <link rel="stylesheet" href="./css/cart.css" />
-  <body>
-    <nav class="nav">
-      <i class="fa-solid fa-bars menu-icon" id="menu-toggle"></i>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Bag | NOMA</title>
+  <link rel="stylesheet" href="./css/cart.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="nav">
+    <button class="menu-icon" id="menu-toggle" type="button" aria-label="Toggle navigation">☰</button>
+    <a href="index.html">NOMA</a>
+    <div class="nav-sect2" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="index.html#collections">Collections</a>
+      <a href="index.html#about">About</a>
+    </div>
+    <div class="nav-icons">
+      <a href="cart.html" aria-label="Your bag">Bag (<span class="cart-count">0</span>)</a>
+    </div>
+  </nav>
 
-      <a href="index.html">NOMA</a>
-
-      <div class="nav-sect2" id="nav-links">
-        <a href="shop.html">Shop</a>
-        <a href="#">New Arrivals</a>
-        <a href="#">Categories</a>
-        <a href="#">About</a>
-      </div>
-
-      <div class="nav-icons">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <i class="fa-solid fa-bag-shopping"></i>
-        <i class="fa-solid fa-user account-icon"></i>
-      </div>
-    </nav>
-
-    <main class="cart-page">
-      <div class="breadcrumb">
-        <a href="index.html">Home</a>
-        <span>/</span>
-        <a href="shop.html">Shop</a>
-        <span>/</span>
-        <span>Cart</span>
-      </div>
-
-      <div class="cart-heading">
-        <div>
-          <h2>Your Bag</h2>
-          <p>Review your selected pieces before checkout.</p>
-        </div>
-        <span>2 Items</span>
-      </div>
-
-      <section class="cart-container">
-        <!-- Cart Items -->
-        <div class="cart-items">
-          <div class="cart-item">
-            <img src="./assets/product-1.avif" alt="Essential Oversized Tee" />
-
-            <div class="item-details">
-              <h3>Essential Oversized Tee</h3>
-              <p>Sand / Size M</p>
-              <strong>₦18,500</strong>
-
-              <div class="quantity">
-                <button type="button">−</button>
-                <span>1</span>
-                <button type="button">+</button>
-              </div>
-
-              <div class="item-actions">
-                <a href="#">Move to wishlist</a>
-                <a href="#">Remove</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="cart-item">
-            <img src="./assets/product-5.avif" alt="Classic Overshirt" />
-
-            <div class="item-details">
-              <h3>Classic Overshirt</h3>
-              <p>Olive / Size L</p>
-              <strong>₦48,000</strong>
-
-              <div class="quantity">
-                <button type="button">−</button>
-                <span>1</span>
-                <button type="button">+</button>
-              </div>
-
-              <div class="item-actions">
-                <a href="#">Move to wishlist</a>
-                <a href="#">Remove</a>
-              </div>
-            </div>
-          </div>
-
-          <a href="shop.html" class="continue-shopping">
-            ← Continue shopping
-          </a>
-        </div>
-
-        <!-- Order Summary -->
-        <aside class="order-summary">
-          <h3>Order Summary</h3>
-
-          <div class="summary-row">
-            <span>Subtotal</span>
-            <span>₦66,500</span>
-          </div>
-
-          <div class="summary-row">
-            <span>Shipping</span>
-            <span>Calculated at checkout</span>
-          </div>
-
-          <div class="promo-code">
-            <input type="text" placeholder="Enter promo code" />
-            <button type="button">Apply</button>
-          </div>
-
-          <div class="summary-total">
-            <span>Estimated Total</span>
-            <strong>₦66,500</strong>
-          </div>
-
-          <button class="checkout-btn" type="button">
-            Proceed to Checkout
-          </button>
-
-          <p class="checkout-note">Secure checkout · Easy returns</p>
-        </aside>
-      </section>
-    </main>
-
-<!-- EMPTY CART STATE -->
-
-<section class="empty-cart">
-  <div class="empty-cart-content">
-    <div class="empty-cart-icon">
-      <i class="fa-solid fa-bag-shopping"></i>
+  <main class="cart-page">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>/</span><a href="shop.html">Shop</a><span>/</span><span>Your Bag</span>
     </div>
 
-    <h2>Your Bag Is Empty</h2>
-
-    <p>
-      Looks like you haven't added anything to your bag yet.
-      Discover pieces made for everyday living.
-    </p>
-
-    <a href="shop.html" class="empty-cart-btn">
-      Continue Shopping
-    </a>
-  </div>
-
-  <div class="popular-products">
-    <div class="popular-heading">
-      <h3>Popular Right Now</h3>
-      <a href="shop.html">View All</a>
+    <div class="cart-heading">
+      <div>
+        <h2>Your Bag</h2>
+        <p>Review your selected pieces before checkout.</p>
+      </div>
+      <span id="cart-item-count">0 Items</span>
     </div>
 
-    <div class="popular-grid">
-      <div class="popular-card">
-        <img src="./assets/product-1.avif" alt="Essential Tee">
-        <h4>Essential Oversized Tee</h4>
-        <p>₦18,500</p>
-      </div>
+    <section class="cart-container">
+      <div class="cart-items" id="cart-items" aria-live="polite"></div>
 
-      <div class="popular-card">
-        <img src="./assets/product-5.avif" alt="Classic Overshirt">
-        <h4>Classic Overshirt</h4>
-        <p>₦48,000</p>
-      </div>
+      <aside class="order-summary" id="order-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-row"><span>Subtotal</span><span id="cart-subtotal">₦0</span></div>
+        <div class="summary-row"><span>Shipping</span><span>Calculated at checkout</span></div>
+        <div class="summary-total"><span>Estimated Total</span><strong id="cart-total">₦0</strong></div>
+        <button class="checkout-btn" id="checkout-button" type="button">Proceed to Checkout</button>
+        <p class="checkout-note">Secure checkout · Easy returns</p>
+      </aside>
+    </section>
+  </main>
 
-      <div class="popular-card">
-        <img src="./assets/product-3.avif" alt="Everyday Essential">
-        <h4>Everyday Essential</h4>
-        <p>₦22,000</p>
-      </div>
-
-      <div class="popular-card">
-        <img src="./assets/product-4.avif" alt="Classic Collection">
-        <h4>Classic Collection</h4>
-        <p>₦25,000</p>
+  <section class="empty-cart" id="empty-cart" hidden>
+    <div class="empty-cart-content">
+      <div class="empty-cart-icon">🛍</div>
+      <h2>Your Bag Is Empty</h2>
+      <p>Looks like you haven't added anything to your bag yet. Discover pieces made for everyday living.</p>
+      <a href="shop.html" class="empty-cart-btn">Continue Shopping</a>
+    </div>
+    <div class="popular-products">
+      <div class="popular-heading"><h3>Popular Right Now</h3><a href="shop.html">View All</a></div>
+      <div class="popular-grid">
+        <a class="popular-card" href="product.html?id=1"><img src="./assets/product-1.avif" alt="Everyday Essential Tee"><h4>Everyday Essential Tee</h4><p>₦18,500</p></a>
+        <a class="popular-card" href="product.html?id=2"><img src="./assets/product-2.avif" alt="Classic Linen Shirt"><h4>Classic Linen Shirt</h4><p>₦25,000</p></a>
+        <a class="popular-card" href="product.html?id=3"><img src="./assets/product-3.avif" alt="Minimal Leather Bag"><h4>Minimal Leather Bag</h4><p>₦32,000</p></a>
+        <a class="popular-card" href="product.html?id=4"><img src="./assets/product-4.avif" alt="Relaxed Cotton Trousers"><h4>Relaxed Cotton Trousers</h4><p>₦22,000</p></a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-    <script src="./css/cart.css"></script>
-  </body>
+  <script src="./js/products.js"></script>
+  <script src="./js/cart.js"></script>
+  <script src="./js/main.js"></script>
+</body>
 </html>
